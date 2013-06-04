@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  coloring-book
+
+  Created by Byron Sanchez on 2/8/13.
+  Copyright (c) 2013 Chompix. All rights reserved.
+*/
+
+"app_name" = "Coloring Book";
+"menu_settings" = "Settings";
+"ib_main_color_content_description" = "Button to navigate to the coloring book.";
+"tv_shop" = "Shop";
+"tv_shop_description" = "Each pack is a pay once unlimited use item.";
+"tv_settings_label" = "Settings"; //
+"ib_left_content_description" = "Button to go to the previous page.";
+"ib_right_content_description" = "Button to go to the next page.";
+"tv_shop_book_2_farm_animals_label" = "Farm Animals Pack";
+"ib_shop_book_2_farm_animals_content_description" = "Button to buy the \"Farm Animals\" coloring book.";
+"tv_settings_music_label" = "Music"; //
+"tv_settings_shop_label" = "Visit Shop"; //
+"ib_settings_shop_content_description" = "Button to navigate to the Shop screen.";
+"tv_settings_credits_label" = "View Credits"; //
+"ib_settings_credits_content_description" = "Button to navigate to the Credits screen.";
+"ib_main_settings_content_description" = "Button to navigate to the Settings screen.";
+"ib_main_help_content_description" = "Button to navigate to the Help Screen.";
+"ib_pager_left_content_description" = "Button to select the previous coloring book.";
+"ib_pager_right_content_description" = "Button to select the next coloring book.";
+"iv_main_title_content_description" = "Coloring Book";
+"tv_help" = "<b>Main Menu</b> - Navigate through all available coloring books. Pick one to begin coloring.<br /><br />
+
+<b>Coloring Book Page</b> - Use the left or right arrows to navigate through the coloring pages.<br /><br />
+
+Toggle between <b>brush mode</b> and <b>fill-bucket mode</b> using the bottom left button.<br /><br />
+
+Use the <b>eraser</b> to erase colors.<br /><br />
+
+<b>Settings</b> - Turn music on/off, visit the shop, or view production credits.<br /><br />
+
+<b>Help</b> - View this help screen."; //
+"error_ok_label" = "OK";
