@@ -1,0 +1,67 @@
+        Coloring Book for iOS v0.1 <http://hackbytes.com>
+
+This is the master repository of the "Coloring Book for iOS" app.
+The submodule repositories can be found at the following locations:
+
+  http://github.com/byronsanchez/coloring-book-resources-ios
+  http://github.com/byronsanchez/coloring-book-dependencies-ios
+
+INSTRUCTIONS
+
+  Clone the coloring-book-ios repository, or alternatively, clone
+  your fork of the coloring-book-ios repository. Then add the
+  necessary submodules:
+
+    cd coloring-book-ios
+    git submodule add https://github.com/byronsanchez/coloring-book-dependencies-ios.git libs
+    git submodule add https://github.com/byronsanchez/coloring-book-resources-ios.git res
+    git commit -m 'first commit with submodules'
+
+  Now you're all set to hack "Coloring Book for iOS"!
+
+STRUCTURE
+
+  The repository tree structure.
+
+    /              - contains the entire "Coloring Book for iOS"
+                     application.
+
+    Assets/        - contains files that supplement application
+                     functionality (e.g., database schema file).
+
+    Classes/       - contains the "Coloring Book for iOS" source
+                     code.
+
+    Resources/     - contains the "Coloring Book for iOS"
+                     resources submodule. This submodule contains
+                     image and media assets used in the application.
+
+    Support/       - contains files that add further support to the
+                     application.
+
+    Vendor/        - contains the "Coloring Book for iOS"
+                     dependencies submodule.
+
+LICENSE
+  
+  "Coloring Book for iOS" source code is Copyright (c) 2013 by Byron
+  Sanchez, licensed under the GNU GPL v2.0.
+
+  "Coloring Book for iOS" logo is Copyright (c) 2013 by Byron
+  Sanchez. All rights reserved.
+
+  "Deliberate Thought" is Copyright (c) 2007 by Kevin MacLeod
+  (incompetech.com), licensed under Creative Commons: By Attribution 3.0.
+  http://creativecommons.org/licenses/by/3.0/
+
+  "Coloring Book for iOS" images and any media (defined as binary
+  files that are not software dependencies) are Copyright (c) 2013 Byron
+  Sanchez, licensed under Creative Commons: BY-SA Attribution 3.0 unless
+  otherwise noted.
+  http://creativecommons.org/licenses/by-sa/3.0/
+  Attribution specification is in the COPYRIGHT file.
+
+  ---
+  
+  Read the COPYRIGHT file carefully for the details of what this all
+  means.
