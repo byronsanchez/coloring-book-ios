@@ -1,0 +1,6 @@
+[submodule "Vendor"]
+	path = Vendor
+	url = https://github.com/byronsanchez/coloring-book-dependencies-ios.git
+[submodule "Resources"]
+	path = Resources
+	url = https://github.com/byronsanchez/coloring-book-resources-ios.git
