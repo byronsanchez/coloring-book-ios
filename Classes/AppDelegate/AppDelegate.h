@@ -19,6 +19,10 @@
 // <http://www.gnu.org/licenses/>.
 //
 
+#import <UIKit/UIKit.h>
+
+#import "ViewController.h"
+
 // Initializes the root view controller and places it on a navigation stack.
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 
