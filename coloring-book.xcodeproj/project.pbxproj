@@ -281,6 +281,7 @@
 		A344C0D416C215E3004B6EF7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A344C0D316C215E3004B6EF7 /* UIKit.framework */; };
 		A344C0D616C215E3004B6EF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A344C0D516C215E3004B6EF7 /* Foundation.framework */; };
 		A344C0D816C215E3004B6EF7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A344C0D716C215E3004B6EF7 /* CoreGraphics.framework */; };
+		A34668AA17627CBC004347CE /* beat_delib_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A34668A917627CBC004347CE /* beat_delib_01.mp3 */; };
 		A354AFF016DACB5B000C9D2B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354AFEF16DACB59000C9D2B /* StoreKit.framework */; };
 		A3841B3A16C58B4B001C72AB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3841B3916C58B4B001C72AB /* AVFoundation.framework */; };
 		A3BFCB36175325BA00452950 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCB34175325BA00452950 /* main.m */; };
@@ -307,7 +308,6 @@
 		A3BFCF5C1753264700452950 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BFCE221753264700452950 /* ViewController_iPad.xib */; };
 		A3BFCF5D1753264700452950 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BFCE231753264700452950 /* ViewController_iPhone.xib */; };
 		A3BFCF5E1753264700452950 /* ViewController_iPhoneLarge.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BFCE241753264700452950 /* ViewController_iPhoneLarge.xib */; };
-		A3BFCF5F1753264700452950 /* beat_delib_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3BFCE261753264700452950 /* beat_delib_01.mp3 */; };
 		A3BFCF8E1753265F00452950 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCF631753265F00452950 /* AppDelegate.m */; };
 		A3BFCF8F1753265F00452950 /* Categorie.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCF661753265F00452950 /* Categorie.m */; };
 		A3BFCF901753265F00452950 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCF681753265F00452950 /* Node.m */; };
@@ -609,6 +609,7 @@
 		A344C0D316C215E3004B6EF7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A344C0D516C215E3004B6EF7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A344C0D716C215E3004B6EF7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A34668A917627CBC004347CE /* beat_delib_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beat_delib_01.mp3; sourceTree = "<group>"; };
 		A354AFEF16DACB59000C9D2B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A3841B3916C58B4B001C72AB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A3BFCB33175325BA00452950 /* coloring-book-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "coloring-book-Info.plist"; sourceTree = "<group>"; };
@@ -639,7 +640,6 @@
 		A3BFCE221753264700452950 /* ViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPad.xib; sourceTree = "<group>"; };
 		A3BFCE231753264700452950 /* ViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhone.xib; sourceTree = "<group>"; };
 		A3BFCE241753264700452950 /* ViewController_iPhoneLarge.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhoneLarge.xib; sourceTree = "<group>"; };
-		A3BFCE261753264700452950 /* beat_delib_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beat_delib_01.mp3; sourceTree = "<group>"; };
 		A3BFCF621753265F00452950 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A3BFCF631753265F00452950 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A3BFCF651753265F00452950 /* Categorie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categorie.h; sourceTree = "<group>"; };
@@ -1066,6 +1066,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A34668A817627CBC004347CE /* Raw */ = {
+			isa = PBXGroup;
+			children = (
+				A34668A917627CBC004347CE /* beat_delib_01.mp3 */,
+			);
+			path = Raw;
+			sourceTree = "<group>";
+		};
 		A3BFCBDB1753260600452950 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1091,7 +1099,7 @@
 			children = (
 				A329E2F517532C6400B85447 /* Images */,
 				A3BFCE101753264700452950 /* NIBs */,
-				A3BFCE251753264700452950 /* Sounds */,
+				A34668A817627CBC004347CE /* Raw */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1121,14 +1129,6 @@
 				A3BFCE241753264700452950 /* ViewController_iPhoneLarge.xib */,
 			);
 			path = NIBs;
-			sourceTree = "<group>";
-		};
-		A3BFCE251753264700452950 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				A3BFCE261753264700452950 /* beat_delib_01.mp3 */,
-			);
-			path = Sounds;
 			sourceTree = "<group>";
 		};
 		A3BFCF601753265F00452950 /* Classes */ = {
@@ -1298,7 +1298,6 @@
 				A3BFCF5C1753264700452950 /* ViewController_iPad.xib in Resources */,
 				A3BFCF5D1753264700452950 /* ViewController_iPhone.xib in Resources */,
 				A3BFCF5E1753264700452950 /* ViewController_iPhoneLarge.xib in Resources */,
-				A3BFCF5F1753264700452950 /* beat_delib_01.mp3 in Resources */,
 				A3BFCFD41753266B00452950 /* coloring_book.db in Resources */,
 				A329E42317532C6400B85447 /* Icon-72.png in Resources */,
 				A329E42417532C6400B85447 /* Icon-72@2x.png in Resources */,
@@ -1571,6 +1570,7 @@
 				A329E52F17532C6500B85447 /* Default-Portrait~ipad.png in Resources */,
 				A329E53017532C6500B85447 /* Default.png in Resources */,
 				A329E53117532C6500B85447 /* Default@2x.png in Resources */,
+				A34668AA17627CBC004347CE /* beat_delib_01.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
