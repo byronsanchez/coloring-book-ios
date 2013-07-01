@@ -1,4 +1,4 @@
-        Coloring Book for iOS v0.1 <http://hackbytes.com>
+        Coloring Book for iOS v1.0 <http://chompix.com>
 
 This is the master repository of the "Coloring Book for iOS" app.
 The submodule repositories can be found at the following locations:
@@ -9,15 +9,25 @@ The submodule repositories can be found at the following locations:
 INSTRUCTIONS
 
   Clone the coloring-book-ios repository, or alternatively, clone
-  your fork of the coloring-book-ios repository. Then add the
-  necessary submodules:
+  your fork of the coloring-book-ios repository, along with its
+  submodules.
 
+  For git version 1.6.5 or higher, run:
+  
+    git clone --recursive https://github.com/byronsanchez/coloring-book-ios.git
     cd coloring-book-ios
-    git submodule add https://github.com/byronsanchez/coloring-book-dependencies-ios.git Vendor
-    git submodule add https://github.com/byronsanchez/coloring-book-resources-ios.git Resources
-    git commit -m 'first commit with submodules'
+    Assets/Scripts/build.sh all
+  
+  For other versions of git, run:
+  
+    https://github.com/byronsanchez/coloring-book-ios.git
+    cd coloring-book-ios
+    git submodule update --init
+    Assets/Scripts/build.sh all
 
-  Now you're all set to hack "Coloring Book for iOS"!
+  Follow the instructions in the build script carefully. Once you are
+  done with the build script, you will be all set to hack "Coloring
+  Book for iOS"!
 
 STRUCTURE
 
@@ -46,6 +56,9 @@ LICENSE
   
   "Coloring Book for iOS" source code is Copyright (c) 2013 by Byron
   Sanchez (hackbytes.com), licensed under the GNU GPL v2.0.
+  
+  Chompix logo is Copyright (c) 2013 by Byron Sanchez (hackbytes.com).
+  All rights reserved.
 
   "Coloring Book for iOS" logo is Copyright (c) 2013 by Byron
   Sanchez (hackbytes.com). All rights reserved.
@@ -65,3 +78,26 @@ LICENSE
   
   Read the COPYRIGHT file carefully for the details of what this all
   means.
+  
+  In short:
+  
+    - You may not use the following content for any reason without my
+      explicit permission:
+    
+      * The Chompix logo
+    
+      * The Coloring Book logo
+      
+    - You can use anything else, so long as you follow the licensing
+      requirements for the content you are using. This is all detailed
+      in the COPYRIGHT file.
+      
+    Running the following script from the root of the project directory
+    will remove the non-licensed, restricted content listed above:
+
+      Assets/Scripts/nuke.sh all
+      
+    To view the list of what will be removed, so you can replace them
+    with your own assets. run:
+    
+      Assets/Scripts/nuke.sh list
