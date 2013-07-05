@@ -771,6 +771,9 @@ static BOOL sIsLarge;
         // Disable erase mode
         [_colorGFX setBlendModeForContext:_colorGFX.pathCanvas
                                 blendMode:kCGBlendModeNormal];
+        
+        _colorGFX.mHard = NO;
+        
         // Set the blur mode on again for path drawing.
         // colorGFX.paint.setMaskFilter(mBlur);
         // Set the isEraseModeEnabled boolean
