@@ -63,12 +63,6 @@ function check_sanity {
   fi
 }
 
-function build_database {
-  target_db="$PROJECT_DIR/Assets/coloring_book.db"
-  target_ddl="$PROJECT_DIR/Assets/coloring-book.sql"
-  sqlite3 $target_db < $target_ddl
-}
-
 # NOTE: Currently not used. Use this function if you need to make
 # substitutions.
 function sed_file {
@@ -94,7 +88,6 @@ case "$1" in
 all)
   validate_user
   check_sanity
-  build_database
   message="Build complete!"
   printf "\e[32m$message\e[0m\n"
   ;;

@@ -22,6 +22,7 @@
 #import <Foundation/Foundation.h>
 #include <sqlite3.h>
 
+#import "NSString+RegexSplitAdditions.h"
 #import "Node.h"
 #import "Categorie.h"
 
@@ -58,12 +59,28 @@
 // Checks to see if a database file exists in the default system location.
 - (BOOL)DBExists;
 
-// Copies our pre-populated database to the default system database location
-// for our application.
-- (void)copyDbFromResource;
+// Runs updates from the specified script ID an all subsequent available
+// updates.
+- (void)runUpdates:(NSString *)recentScriptID;
+
+// Applies a change-script to the database.
+- (void)applyScript:(NSString *)script;
+
+// Extracts the specified portion of the script file name.
+- (NSString *)extractStringFromScript:(NSString *)scriptFileName
+                                value:(NSString *)scriptMeta;
+
+// Returns whether or not a table exists in the database.
+- (BOOL)doesTableExist:(NSString *)tableName;
 
 // Returns the path of the document directory.
 - (NSString *)getDocumentDirectory;
+
+// Returns the value of a SQLite pragma.
+- (NSInteger)getPragma:(NSString *)pragmaName;
+
+// Sets the value of a SQLite pragma.
+- (NSInteger)setPragma:(NSString *)pragma_name value:(NSString *)pragmaValue;
 
 // Returns a full list of node titles.
 - (NSMutableArray *)getNodeListData;
@@ -101,5 +118,10 @@
 
 // Flushes any query builder properties.
 - (void)flushQuery;
+
+// If updates are available, applies the updates to the database.
+- (void)onUpgrade:(sqlite3 *)db
+       oldVersion:(NSInteger)oldVersion
+       newVersion:(NSInteger)newVersion;
 
 @end

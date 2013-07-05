@@ -305,6 +305,7 @@ static NSInteger const TOUCH_TOLERANCE = 4;
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
+  
   // Drawing code
   
   if (_isNextImage) {
@@ -495,7 +496,9 @@ static NSInteger const TOUCH_TOLERANCE = 4;
   if (!_isFillModeEnabled || _isEraseModeEnabled) {
     
     // Render the stroke
-    [self renderLineFromPoint:_previousLocation toPoint:_location];
+    [self renderLineFromPoint:_previousLocation
+                      toPoint:_location
+       willRenderEntireScreen:NO];
     
     _mX = _location.x;
     _mY = _location.y;
@@ -520,7 +523,9 @@ static NSInteger const TOUCH_TOLERANCE = 4;
   if (!_isFillModeEnabled || _isEraseModeEnabled) {
     
     //_previousLocation.y = bounds.size.height - _previousLocation.y;
-    [self renderLineFromPoint:_previousLocation toPoint:_location];
+    [self renderLineFromPoint:_previousLocation
+                      toPoint:_location
+       willRenderEntireScreen:YES];
     
     // Copy the movePathCanvas to pathCanvas
     CGImageRef imageRef = CGBitmapContextCreateImage(_movePathCanvas);
@@ -541,7 +546,23 @@ static NSInteger const TOUCH_TOLERANCE = 4;
   
 }
 
-- (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end {
+- (void)renderLineFromPoint:(CGPoint)start
+                    toPoint:(CGPoint)end
+     willRenderEntireScreen:(BOOL)shouldRenderScreen {
+  
+  // Calculate the bounding rectangle.
+  CGFloat boundsX1 = start.x;
+  CGFloat boundsY1 = start.y;
+  CGFloat boundsX2 = end.x;
+  CGFloat boundsY2 = end.y;
+  
+  CGFloat boundsOriginX = MIN(boundsX1, boundsX2);
+  CGFloat boundsOriginY = MIN(boundsY1, boundsY2);
+  CGFloat boundsWidth = fabsf(boundsX2 - boundsX1);
+  CGFloat boundsHeight = fabsf(boundsY2 - boundsY1);
+  
+  CGRect bounds = CGRectMake((boundsOriginX - _mRadius), (boundsOriginY - _mRadius), boundsWidth + (_mRadius * 2), boundsHeight + (_mRadius * 2));
+  
   
   static CGFloat*		vertexBuffer = NULL;
 	static NSUInteger	vertexMax = 64;
@@ -660,7 +681,13 @@ static NSInteger const TOUCH_TOLERANCE = 4;
     CGContextRestoreGState(_movePathCanvas);
   }
   
-  [self setNeedsDisplay];
+  // Unless otherwise signaled, only render the bounding box between two points.
+  if (!shouldRenderScreen) {
+    [self setNeedsDisplayInRect:bounds];
+  }
+  else {
+    [self setNeedsDisplay];
+  }
 }
 
 - (CGFloat) quadCurveWithStartPoint:(CGFloat)A

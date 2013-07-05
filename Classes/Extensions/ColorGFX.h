@@ -161,8 +161,9 @@
 // Handles all user input events to manipulate the screen rendering.
 - (void)touchEventX:(CGFloat *)x y:(CGFloat *)y;
 
-// Drawings a line onscreen based on where the user touches
-- (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
+// Draws a line onscreen based on where the user touches
+- (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end
+     willRenderEntireScreen:(BOOL)shouldRenderScreen;
 
 // Returns the point on a curve represented by position t.
 - (CGFloat)quadCurveWithStartPoint:(CGFloat)A

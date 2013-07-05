@@ -283,6 +283,11 @@
 		A344C0D816C215E3004B6EF7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A344C0D716C215E3004B6EF7 /* CoreGraphics.framework */; };
 		A34668AA17627CBC004347CE /* beat_delib_01.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A34668A917627CBC004347CE /* beat_delib_01.mp3 */; };
 		A354AFF016DACB5B000C9D2B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A354AFEF16DACB59000C9D2B /* StoreKit.framework */; };
+		A3636BE01784E4B600F1A90E /* NSString+RegexSplitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3636BDF1784E4B600F1A90E /* NSString+RegexSplitAdditions.m */; };
+		A3636BE61784E7BE00F1A90E /* sc.01.00.0001 in Resources */ = {isa = PBXBuildFile; fileRef = A3636BE21784E7BE00F1A90E /* sc.01.00.0001 */; };
+		A3636BE71784E7BE00F1A90E /* sc.01.00.0002 in Resources */ = {isa = PBXBuildFile; fileRef = A3636BE31784E7BE00F1A90E /* sc.01.00.0002 */; };
+		A3636BE81784E7BE00F1A90E /* sc.01.01.0003 in Resources */ = {isa = PBXBuildFile; fileRef = A3636BE41784E7BE00F1A90E /* sc.01.01.0003 */; };
+		A3636BE91784E7BE00F1A90E /* sc.01.01.0004 in Resources */ = {isa = PBXBuildFile; fileRef = A3636BE51784E7BE00F1A90E /* sc.01.01.0004 */; };
 		A3841B3A16C58B4B001C72AB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3841B3916C58B4B001C72AB /* AVFoundation.framework */; };
 		A3BFCB36175325BA00452950 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCB34175325BA00452950 /* main.m */; };
 		A3BFCBE01753260600452950 /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCBDD1753260600452950 /* KGModal.m */; };
@@ -328,7 +333,6 @@
 		A3BFCF9F1753265F00452950 /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCF881753265F00452950 /* SplashScreenViewController.m */; };
 		A3BFCFA01753265F00452950 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCF8A1753265F00452950 /* ViewController.m */; };
 		A3BFCFA11753265F00452950 /* ViewPager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCF8D1753265F00452950 /* ViewPager.m */; };
-		A3BFCFD41753266B00452950 /* coloring_book.db in Resources */ = {isa = PBXBuildFile; fileRef = A3BFCFD31753266B00452950 /* coloring_book.db */; };
 		A3C57A9716C3475E005EC92D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C57A9616C3475E005EC92D /* QuartzCore.framework */; };
 		A3C57A9916C34779005EC92D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C57A9816C34779005EC92D /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
@@ -611,6 +615,12 @@
 		A344C0D716C215E3004B6EF7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A34668A917627CBC004347CE /* beat_delib_01.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beat_delib_01.mp3; sourceTree = "<group>"; };
 		A354AFEF16DACB59000C9D2B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A3636BDE1784E4B600F1A90E /* NSString+RegexSplitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegexSplitAdditions.h"; sourceTree = "<group>"; };
+		A3636BDF1784E4B600F1A90E /* NSString+RegexSplitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegexSplitAdditions.m"; sourceTree = "<group>"; };
+		A3636BE21784E7BE00F1A90E /* sc.01.00.0001 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.00.0001; sourceTree = "<group>"; };
+		A3636BE31784E7BE00F1A90E /* sc.01.00.0002 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.00.0002; sourceTree = "<group>"; };
+		A3636BE41784E7BE00F1A90E /* sc.01.01.0003 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.01.0003; sourceTree = "<group>"; };
+		A3636BE51784E7BE00F1A90E /* sc.01.01.0004 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.01.0004; sourceTree = "<group>"; };
 		A3841B3916C58B4B001C72AB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A3BFCB33175325BA00452950 /* coloring-book-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "coloring-book-Info.plist"; sourceTree = "<group>"; };
 		A3BFCB34175325BA00452950 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -680,7 +690,6 @@
 		A3BFCF8A1753265F00452950 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A3BFCF8C1753265F00452950 /* ViewPager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPager.h; sourceTree = "<group>"; };
 		A3BFCF8D1753265F00452950 /* ViewPager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPager.m; sourceTree = "<group>"; };
-		A3BFCFD31753266B00452950 /* coloring_book.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = coloring_book.db; sourceTree = "<group>"; };
 		A3C57A9616C3475E005EC92D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A3C57A9816C34779005EC92D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -1074,6 +1083,17 @@
 			path = Raw;
 			sourceTree = "<group>";
 		};
+		A3636BE11784E7BE00F1A90E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A3636BE21784E7BE00F1A90E /* sc.01.00.0001 */,
+				A3636BE31784E7BE00F1A90E /* sc.01.00.0002 */,
+				A3636BE41784E7BE00F1A90E /* sc.01.01.0003 */,
+				A3636BE51784E7BE00F1A90E /* sc.01.01.0004 */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		A3BFCBDB1753260600452950 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -1170,6 +1190,8 @@
 		A3BFCF6D1753265F00452950 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A3636BDE1784E4B600F1A90E /* NSString+RegexSplitAdditions.h */,
+				A3636BDF1784E4B600F1A90E /* NSString+RegexSplitAdditions.m */,
 				A3BFCF6E1753265F00452950 /* ColorGFX.h */,
 				A3BFCF6F1753265F00452950 /* ColorGFX.m */,
 				A3BFCF701753265F00452950 /* ColorPalette.h */,
@@ -1221,7 +1243,7 @@
 		A3BFCFD21753266B00452950 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				A3BFCFD31753266B00452950 /* coloring_book.db */,
+				A3636BE11784E7BE00F1A90E /* Database */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -1298,7 +1320,6 @@
 				A3BFCF5C1753264700452950 /* ViewController_iPad.xib in Resources */,
 				A3BFCF5D1753264700452950 /* ViewController_iPhone.xib in Resources */,
 				A3BFCF5E1753264700452950 /* ViewController_iPhoneLarge.xib in Resources */,
-				A3BFCFD41753266B00452950 /* coloring_book.db in Resources */,
 				A329E42317532C6400B85447 /* Icon-72.png in Resources */,
 				A329E42417532C6400B85447 /* Icon-72@2x.png in Resources */,
 				A329E42517532C6400B85447 /* Icon.png in Resources */,
@@ -1571,6 +1592,10 @@
 				A329E53017532C6500B85447 /* Default.png in Resources */,
 				A329E53117532C6500B85447 /* Default@2x.png in Resources */,
 				A34668AA17627CBC004347CE /* beat_delib_01.mp3 in Resources */,
+				A3636BE61784E7BE00F1A90E /* sc.01.00.0001 in Resources */,
+				A3636BE71784E7BE00F1A90E /* sc.01.00.0002 in Resources */,
+				A3636BE81784E7BE00F1A90E /* sc.01.01.0003 in Resources */,
+				A3636BE91784E7BE00F1A90E /* sc.01.01.0004 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,6 +1629,7 @@
 				A3BFCF9F1753265F00452950 /* SplashScreenViewController.m in Sources */,
 				A3BFCFA01753265F00452950 /* ViewController.m in Sources */,
 				A3BFCFA11753265F00452950 /* ViewPager.m in Sources */,
+				A3636BE01784E4B600F1A90E /* NSString+RegexSplitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
