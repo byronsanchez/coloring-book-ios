@@ -834,36 +834,37 @@ static NSInteger const TOUCH_TOLERANCE = 4;
   }
 }
 
-- (void)colorStrokes:(LoadViewTask *)taskContext
-    replacementColor:(UIColor *)replacementColor {
-  for (NSInteger i = 0; i < [_mStrokefillList count]; i++) {
-    // Get this iteration's Point object.
-    PointNode *pixel = [_mStrokefillList objectAtIndex:i];
-    
-    // Color the current pixel with the selected color.
-    [taskContext setPixel:pixel.node.x
-                     andY:pixel.node.y
-              replacement:replacementColor];
-  }
-}
-
 - (void)colorPixels:(LoadViewTask *)taskContext
-   replacementColor:(UIColor *)replacementColor {
+    replacementColor:(UIColor *)replacementColor {
   
-  for (NSInteger i = 0; i < [_mFloodfillList count]; i++) {
-    // Get this iteration's Point object.
-    PointNode *pixel = [_mFloodfillList objectAtIndex:i];
-    
-    // Color the current pixel with the selected color.
-    [taskContext setPixel:pixel.node.x
-                     andY:pixel.node.y
-              replacement:replacementColor];
+  // Define the bitmap width and height.
+  NSInteger width = CGImageGetWidth(_pictureBitmap.CGImage);
+  NSInteger height = CGImageGetHeight(_pictureBitmap.CGImage);
+  
+  // Both arrays are the same size, so just choose one to control the
+  // iteration.
+  for (int i = 0; i < width; i++) {
+    for (int j = 0; j < height; j++) {
+      if (_mFloodfillList[height * i + j] != false) {
+        [taskContext setPixel:i
+                         andY:j
+                  replacement:replacementColor];
+      }
+      if (_mStrokefillList[height * i + j] != false) {
+        [taskContext setPixel:i
+                         andY:j
+                  replacement:replacementColor];
+      }
+    }
   }
+  
 }
 
 - (void)clearPixelLists {
-  [_mStrokefillList removeAllObjects];
-  [_mFloodfillList removeAllObjects];
+  free(_mStrokefillList);
+  free(_mFloodfillList);
+  _mStrokefillList = NULL;
+  _mFloodfillList = NULL;
 }
 
 - (void)setSelectedColor:(UIColor *)selectedColor {

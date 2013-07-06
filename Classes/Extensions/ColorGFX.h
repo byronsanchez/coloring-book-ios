@@ -82,10 +82,9 @@
   // TODO: public Paint paint;
   // TODO: public Paint bitmapPaint;
   
-  // A list of points to floodfill whenever this tool is used.
-  NSMutableArray *_mFloodfillList;
-  // A list of points to floodfill whenever this tool is used.
-  NSMutableArray *_mStrokefillList;
+  // Lists of points to floodfill whenever this tool is used.
+  bool *_mFloodfillList;
+  bool *_mStrokefillList;
   
   // Other variables defined right before methods in the Android codebase.
   CGFloat _lastX;
@@ -127,8 +126,8 @@
 @property(nonatomic, assign) BOOL isNextImage;
 @property(nonatomic, copy) NSString *paintBitmapName;
 @property(nonatomic, strong) UIImage *pictureBitmapBuffer;
-@property(nonatomic, strong) NSMutableArray *mFloodfillList;
-@property(nonatomic, strong) NSMutableArray *mStrokefillList;
+@property(nonatomic, assign) bool *mFloodfillList;
+@property(nonatomic, assign) bool *mStrokefillList;
 @property(nonatomic, assign) CGContextRef pathCanvas;
 @property(nonatomic, assign) CGContextRef movePathCanvas;
 @property(nonatomic, assign) BOOL mHard;
@@ -173,10 +172,6 @@
 
 // Handles fill operations when a fill event occurs.
 - (void)fillHandlerX:(CGFloat)x y:(CGFloat)y;
-
-// Colors all anti-aliasing pixels for a smooth fill.
-- (void)colorStrokes:(LoadViewTask *)taskContext
-    replacementColor:(UIColor *)replacementColor;
 
 // Colors all pixels from the flood fill algorithm.
 - (void)colorPixels:(LoadViewTask *)taskContext

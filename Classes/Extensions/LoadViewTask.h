@@ -35,9 +35,10 @@
   UIColor *_replacementColor;
   UIImage *_image;
   
-  // Define an empty list of points to floodfill.
-  NSMutableArray *_list;
-  NSMutableArray *_strokeList;
+  // Define the array primitives. This is faster and will ultimately use
+  // less memory than array lists that can dynamically allocate memory.
+  bool *_list;
+  bool *_strokeList;
   
   // Access the master view controller.
   __unsafe_unretained ColorViewController *_mContext;
