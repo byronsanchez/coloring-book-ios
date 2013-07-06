@@ -318,6 +318,10 @@
 
 - (void)productsRequest:(SKProductsRequest *)request
      didReceiveResponse:(SKProductsResponse *)response {
+
+  if (!response.products || !response.products.count) {
+    return;
+  }
   
   _myProducts = [[NSMutableDictionary alloc] init];
   
