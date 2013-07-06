@@ -37,8 +37,6 @@
   
   // Custom initialization
   _mContext = colorViewController;
-  _list = [[NSMutableArray alloc] init];
-  _strokeList = [[NSMutableArray alloc] init];
   
   return self;
 }
@@ -67,7 +65,6 @@
     // the UI thread class.
     _mContext.colorGFX.mFloodfillList = _list;
     _mContext.colorGFX.mStrokefillList = _strokeList;
-    
     
     // Create the bitmap that will be added to the paint
     // layer.
@@ -103,8 +100,6 @@
     
     fillPicture = nil;
     
-    [_mContext.colorGFX colorStrokes:self replacementColor:_replacementColor];
-    
     // Color the list of pixels generated from the flood
     // fill algorithm.
     [_mContext.colorGFX colorPixels:self replacementColor:_replacementColor];
@@ -113,6 +108,7 @@
     /**
      * New bitmap with updated color.
      */
+    
     CGContextRef ctx = CGBitmapContextCreate(_rawData,
                                              CGImageGetWidth( imageRef ),
                                              CGImageGetHeight( imageRef ),
@@ -165,8 +161,11 @@
     // pathCanvas.drawBitmap(fillPicture, 0, 0, addFilter);
     
   }
-  
+
   [_mContext.colorGFX clearPixelLists];
+  _list = NULL;
+  _strokeList = NULL;
+
   // Close the progress dialog
   // progressDialog.dismiss();
   _mContext.colorGFX.mRunnableCounter--;
@@ -190,6 +189,14 @@
   CGFloat width = CGImageGetWidth(picture.CGImage);
   CGFloat height = CGImageGetHeight(picture.CGImage);
   
+  // Initialize the arrays according to the image metrics.
+  // Allocate 2 dimensions in one for VERY minimal optimization
+  // with regards to false-fill.
+  _list = (bool*) malloc(sizeof(bool) * width * height);
+  _strokeList =(bool*) malloc(sizeof(bool) * width * height);
+  memset(_list, false, sizeof(bool) * width * height);
+  memset(_strokeList, false, sizeof(bool) * width * height);
+  
   // Define the target and replacement color.
   UIColor *target = targetColor;
   UIColor *replacement = replacementColor;
@@ -199,9 +206,7 @@
   if (!CGColorEqualToColor(target.CGColor, replacement.CGColor)) {
     // Set the empty queue and run the algorithm at least once (or
     // alternatively, set the point to the end of queue and run a
-    // while
-    // loop
-    // that performs this algorithm so long as the Queue is not
+    // while loop that performs this algorithm so long as the Queue is not
     // empty).
     NSMutableArray *queue = [[NSMutableArray alloc] init];
     // Get the pixel data from the image.
@@ -219,8 +224,7 @@
       CGFloat y = node.node.y;
       
       // while x is not at the origin AND the color of it's West
-      // neighboring
-      // pixel is changeable.
+      // neighboring pixel is changeable.
       while (x > 0 && CGColorEqualToColor([self getPixel:(x - 1) andY:y].CGColor, target.CGColor)) {
         // Continuously decrement x (AKA bring x as far to the
         // west as possible given the color constraints).
@@ -242,65 +246,54 @@
         // Replace the current pixel color.
         [self setPixel:x andY:y replacement:replacement];
         // Add the pixel to the flood fill list.
-        [_list addObject:[[PointNode alloc] initWithPoint:CGPointMake(x, y)]];
+        _list[(int)(height * x + y)] = true;
         
         // If any of the surrounding pixel's are black, add it
-        // to
-        // the stroke
-        // list.
+        // to the stroke list.
         
         // TOP
-        
         if (y + 1 < height - 1 && !CGColorEqualToColor([self getPixel:x andY:(y + 1)].CGColor, target.CGColor)) {
-          [_strokeList addObject:[[PointNode alloc] initWithPoint:CGPointMake(x, y + 1)]];
+          _strokeList[(int)(height * x + (y + 1))] = true;
         }
         
         // RIGHT
         if (x + 1 < width - 1 && !CGColorEqualToColor([self getPixel:(x + 1) andY:y].CGColor, target.CGColor)) {
-          [_strokeList addObject:[[PointNode alloc] initWithPoint:CGPointMake(x + 1, y)]];
+          _strokeList[(int)(height * (x + 1) + y)] = true;
         }
         
         // LEFT
         if (x - 1 > 0 && !CGColorEqualToColor([self getPixel:(x - 1) andY:y].CGColor, target.CGColor)) {
-          [_strokeList addObject:[[PointNode alloc] initWithPoint:CGPointMake(x - 1, y)]];
+          _strokeList[(int)(height * (x - 1) + y)] = true;
         }
         
         // BOTTOM
         if (y - 1 > 0 && !CGColorEqualToColor([self getPixel:x andY:(y - 1)].CGColor, target.CGColor)) {
-          [_strokeList addObject:[[PointNode alloc] initWithPoint:CGPointMake(x, y - 1)]];
+          _strokeList[(int)(height * x + (y - 1))] = true;
         }
         
         // Add one SOUTH point to the queue if it is replaceable
-        // (this will
-        // be the next relative point to check from) and we have
-        // not
-        // previously moved down.
+        // (this will be the next relative point to check from) and we have
+        // not previously moved down.
         if (!spanUp && y > 0 && CGColorEqualToColor([self getPixel:x andY:(y - 1)].CGColor, target.CGColor)) {
           [queue add:[[PointNode alloc] initWithPoint:CGPointMake(x, y - 1)]];
           spanUp = YES;
         }
         // If the SOUTH point is unreplaceable or we have
-        // previously
-        // moved up
-        // set the boolean to false.
+        // previously moved up set the boolean to false.
         else if (spanUp && y > 0 && !CGColorEqualToColor([self getPixel:x andY:(y - 1)].CGColor, target.CGColor)) {
           spanUp = NO;
         }
         
         // Add one NORTH point to the queue if it is replaceable
-        // (this will
-        // be the next relative point to check from) and we have
-        // not
-        // previously moved up.
+        // (this will be the next relative point to check from) and we have
+        // not previously moved up.
         if (!spanDown && y < height - 1
             && CGColorEqualToColor([self getPixel:x andY:(y + 1)].CGColor, target.CGColor)) {
           [queue add:[[PointNode alloc] initWithPoint:CGPointMake(x, y + 1)]];
           spanDown = YES;
         }
         // If the NORTH point is unreplaceable or we have
-        // previously
-        // moved up
-        // set the boolean to false.
+        // previously moved up set the boolean to false.
         else if (spanDown && y < height - 1
                  && !CGColorEqualToColor([self getPixel:x andY:(y + 1)].CGColor, target.CGColor)) {
           spanDown = NO;
@@ -319,10 +312,8 @@
   [self releasePixelData];
   
   // Once the Flood Fill Algorithm has completed, turn the action flag
-  // off.
-  // We're done.
+  // off. We're done.
   _mContext.colorGFX.isFillEnabled = NO;
-  
 }
 
 - (void)generatePixelData:(UIImage *)imageInfo {

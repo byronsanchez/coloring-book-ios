@@ -137,7 +137,7 @@ static BOOL sIsLarge;
   // Create the progressbar view
   if (sIsTablet) {
     _mPbFloodFill = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    CGAffineTransform transform = CGAffineTransformMakeScale(2.8f, 2.8f);
+    CGAffineTransform transform = CGAffineTransformMakeScale(1.5f, 1.5f);
     _mPbFloodFill.transform = transform;
   }
   else {
