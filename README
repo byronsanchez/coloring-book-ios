@@ -1,4 +1,4 @@
-        Coloring Book for iOS v1.0 <http://chompix.com>
+        Coloring Book for iOS v1.1.0 <http://chompix.com>
 
 This is the master repository of the "Coloring Book for iOS" app.
 The submodule repositories can be found at the following locations:
@@ -20,7 +20,7 @@ INSTRUCTIONS
   
   For other versions of git, run:
   
-    https://github.com/byronsanchez/coloring-book-ios.git
+    git clone https://github.com/byronsanchez/coloring-book-ios.git
     cd coloring-book-ios
     git submodule update --init
     Assets/Scripts/build.sh all
