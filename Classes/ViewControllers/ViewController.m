@@ -37,6 +37,7 @@ static BOOL sIsFirstLaunch = YES;
 @synthesize mIbPagerLeft = _mIbPagerLeft;
 @synthesize mIbPagerRight = _mIbPagerRight;
 @synthesize mScrollView = _mScrollView;
+@synthesize mDbNodeHelper = _mDbNodeHelper;
 @synthesize viewList = _viewList;
 
 // Implements init.
@@ -69,15 +70,26 @@ static BOOL sIsFirstLaunch = YES;
   [self.navigationController setNavigationBarHidden:YES];
   
   /**
+   * Database check!
+   */
+  
+  // Probe the database in case installtion or upgrades are necessary.
+  _mDbNodeHelper = [[NodeDatabase alloc] init];
+  [_mDbNodeHelper createDatabase];
+  // On first run, viewWillAppear will populate the pager with
+  // data.
+  _mCategoryLength = 0;
+  [_mDbNodeHelper close];
+  
+  /**
    * Splash screen on first launch.
    */
   
   if (sIsFirstLaunch) {
     // Launch the credits view.
-    SplashScreenViewController *splashScreenViewController;
     
     if (_isTablet) {
-      splashScreenViewController = [[SplashScreenViewController alloc]
+      _splashScreenViewController = [[SplashScreenViewController alloc]
                                     initWithNibName:@"SplashScreenViewController_iPad"
                                     bundle:nil];
     }
@@ -85,18 +97,18 @@ static BOOL sIsFirstLaunch = YES;
       
       if (_isLarge) {
         // iPhone 5+
-        splashScreenViewController = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController_iPhoneLarge" bundle:nil];
+        _splashScreenViewController = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController_iPhoneLarge" bundle:nil];
       }
       else {
         // iPhone Classic
-        splashScreenViewController = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController_iPhone" bundle:nil];
+        _splashScreenViewController = [[SplashScreenViewController alloc] initWithNibName:@"SplashScreenViewController_iPhone" bundle:nil];
       }
     }
     
     // For backwards compatibility, we are using the navigation controller instead
     // of the modal presenter.
-    splashScreenViewController.mContext = self;
-    [self.navigationController pushViewController:splashScreenViewController animated:NO];
+    _splashScreenViewController.mContext = self;
+    [self.navigationController pushViewController:_splashScreenViewController animated:NO];
     
     sIsFirstLaunch = NO;
   }
@@ -340,36 +352,6 @@ static BOOL sIsFirstLaunch = YES;
   [[self view] bringSubviewToFront:_mIbPagerLeft];
   [[self view] bringSubviewToFront:_mIbPagerRight];
   [[self view] bringSubviewToFront:_mScrollView];
-  
-  /**
-   * Database check!
-   */
-  
-  // Create our database access object.
-  _mDbNodeHelper = [[NodeDatabase alloc] init];
-  
-  // Call the create right after initializing the helper, just in case
-  // the user has never run the app before.
-  [_mDbNodeHelper createDatabase];
-  
-  // Query the database for all purchased categories.
-  
-  // Set a conditional buffer. Internally, the orderby is set to _id ASC
-  // (NodeDatabase.java).
-  [_mDbNodeHelper setConditions:@"isAvailable" rightOperand:@"1"];
-  // Execute the query.
-  _mCategoryData = [_mDbNodeHelper getCategoryListData];
-  // Store the number of categories available.
-  _mCategoryLength = [_mCategoryData count];
-  // Flush the buffer.
-  [_mDbNodeHelper flushQuery];
-  
-  // Close the database.
-  [_mDbNodeHelper close];
-  
-  // Initialize the pager
-  [self initializePaging];
-  [self updateButtons];
 }
 
 
@@ -377,51 +359,52 @@ static BOOL sIsFirstLaunch = YES;
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   
-  /**
-   * Database check!
-   */
-  
-  // Memory manage all variables.
-  if (_mDbNodeHelper != nil) {
-    _mDbNodeHelper = nil;
+  if (!_mDbNodeHelper.mIsUpgradeTaskInProgress) {
+    /**
+     * Database check!
+     */
+    
+    // Memory manage all variables.
+    if (_mDbNodeHelper != nil) {
+      _mDbNodeHelper = nil;
+    }
+    if (_mCategoryData != nil) {
+      _mCategoryData = nil;
+    }
+    
+    // Create our database access object.
+    _mDbNodeHelper = [[NodeDatabase alloc] init];
+    
+    // Call the create method right just in case the user has never run the
+    // app before. If a database does not exist, the prepopulated one will
+    // be copied from the assets folder. Else, a connection is established.
+    [_mDbNodeHelper createDatabase];
+    
+    // Query the database for all purchased categories.
+    
+    // Set a conditional buffer. Internally, the orderby is set to _id ASC
+    // (NodeDatabase.java).
+    [_mDbNodeHelper setConditions:@"isAvailable" rightOperand:@"1"];
+    // Execute the query.
+    _mCategoryData = [_mDbNodeHelper getCategoryListData];
+    // Store the number of categories available.
+    NSInteger newLength = [_mCategoryData count];
+    // Flush the buffer.
+    [_mDbNodeHelper flushQuery];
+    
+    // This activity no longer needs the connection, so close it.
+    [_mDbNodeHelper close];
+    
+    // Only rebuild the pager if there has been a change in length of
+    // available categories. This means that the user has purchased a new
+    // coloring book!
+    if (newLength > _mCategoryLength) {
+      _mCategoryLength = newLength;
+      // Rebuild the pager.
+      [self initializePaging];
+      [self updateButtons];
+    }
   }
-  if (_mCategoryData != nil) {
-    _mCategoryData = nil;
-  }
-  
-  // Create our database access object.
-  _mDbNodeHelper = [[NodeDatabase alloc] init];
-  
-  // Call the create method right just in case the user has never run the
-  // app before. If a database does not exist, the prepopulated one will
-  // be copied from the assets folder. Else, a connection is established.
-  [_mDbNodeHelper createDatabase];
-  
-  // Query the database for all purchased categories.
-  
-  // Set a conditional buffer. Internally, the orderby is set to _id ASC
-  // (NodeDatabase.java).
-  [_mDbNodeHelper setConditions:@"isAvailable" rightOperand:@"1"];
-  // Execute the query.
-  _mCategoryData = [_mDbNodeHelper getCategoryListData];
-  // Store the number of categories available.
-  NSInteger newLength = [_mCategoryData count];
-  // Flush the buffer.
-  [_mDbNodeHelper flushQuery];
-  
-  // This activity no longer needs the connection, so close it.
-  [_mDbNodeHelper close];
-  
-  // Only rebuild the pager if there has been a change in length of
-  // available categories. This means that the user has purchased a new
-  // coloring book!
-  if (newLength > _mCategoryLength) {
-    _mCategoryLength = newLength;
-    // Rebuild the pager.
-    [self initializePaging];
-    [self updateButtons];
-  }
-  
 }
 
 - (void)initializePaging {

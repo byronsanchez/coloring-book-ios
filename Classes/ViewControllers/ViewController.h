@@ -42,6 +42,9 @@
   // Define the database access property.
   NodeDatabase *_mDbNodeHelper;
   
+  // The splash screen view controller.
+  SplashScreenViewController *_splashScreenViewController;
+  
   // Define a category object that will store the category data from the
   // database.
   NSArray *_mCategoryData;
@@ -88,8 +91,8 @@
 @property(nonatomic, strong) IBOutlet UIButton *mIbPagerLeft;
 @property(nonatomic, strong) IBOutlet UIButton *mIbPagerRight;
 @property(nonatomic, strong) IBOutlet UIScrollView *mScrollView;
+@property(nonatomic, strong) NodeDatabase *mDbNodeHelper;
 @property(nonatomic, strong) NSMutableArray *viewList;
-
 
 // Initialize the fragments to be paged.
 - (void)initializePaging;

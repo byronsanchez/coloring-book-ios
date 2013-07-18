@@ -289,6 +289,7 @@
 		A3636BE81784E7BE00F1A90E /* sc.01.01.0003 in Resources */ = {isa = PBXBuildFile; fileRef = A3636BE41784E7BE00F1A90E /* sc.01.01.0003 */; };
 		A3636BE91784E7BE00F1A90E /* sc.01.01.0004 in Resources */ = {isa = PBXBuildFile; fileRef = A3636BE51784E7BE00F1A90E /* sc.01.01.0004 */; };
 		A3841B3A16C58B4B001C72AB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3841B3916C58B4B001C72AB /* AVFoundation.framework */; };
+		A3BD5F591795CD5600508414 /* DBUpgradeTask.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BD5F581795CD5600508414 /* DBUpgradeTask.m */; };
 		A3BFCB36175325BA00452950 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCB34175325BA00452950 /* main.m */; };
 		A3BFCBE01753260600452950 /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCBDD1753260600452950 /* KGModal.m */; };
 		A3BFCBE11753260600452950 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BFCBDF1753260600452950 /* Toast+UIView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -622,6 +623,8 @@
 		A3636BE41784E7BE00F1A90E /* sc.01.01.0003 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.01.0003; sourceTree = "<group>"; };
 		A3636BE51784E7BE00F1A90E /* sc.01.01.0004 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sc.01.01.0004; sourceTree = "<group>"; };
 		A3841B3916C58B4B001C72AB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A3BD5F571795CD5600508414 /* DBUpgradeTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUpgradeTask.h; sourceTree = "<group>"; };
+		A3BD5F581795CD5600508414 /* DBUpgradeTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUpgradeTask.m; sourceTree = "<group>"; };
 		A3BFCB33175325BA00452950 /* coloring-book-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "coloring-book-Info.plist"; sourceTree = "<group>"; };
 		A3BFCB34175325BA00452950 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3BFCBDC1753260600452950 /* KGModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGModal.h; sourceTree = "<group>"; };
@@ -1181,6 +1184,8 @@
 				A3BFCF681753265F00452950 /* Node.m */,
 				A3BFCF691753265F00452950 /* NodeDatabase.h */,
 				A3BFCF6A1753265F00452950 /* NodeDatabase.m */,
+				A3BD5F571795CD5600508414 /* DBUpgradeTask.h */,
+				A3BD5F581795CD5600508414 /* DBUpgradeTask.m */,
 				A3BFCF6B1753265F00452950 /* Preferences.h */,
 				A3BFCF6C1753265F00452950 /* Preferences.m */,
 			);
@@ -1630,6 +1635,7 @@
 				A3BFCFA01753265F00452950 /* ViewController.m in Sources */,
 				A3BFCFA11753265F00452950 /* ViewPager.m in Sources */,
 				A3636BE01784E4B600F1A90E /* NSString+RegexSplitAdditions.m in Sources */,
+				A3BD5F591795CD5600508414 /* DBUpgradeTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,6 +38,7 @@ static NSInteger const kSplashTime = 5000; //
   
   if (self) {
     // Init code here.
+    _mIsThreadRunning = NO;
     
   }
   return self;
@@ -49,6 +50,7 @@ static NSInteger const kSplashTime = 5000; //
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     // Custom initialization
+    _mIsThreadRunning = NO;
   }
   return self;
 }
@@ -91,7 +93,6 @@ static NSInteger const kSplashTime = 5000; //
   [_ivSplash setContentMode:UIViewContentModeTopLeft];
   
   [[self view] addSubview:_ivSplash];
-  
 }
 
 #pragma mark - UIViewController Methods
@@ -101,22 +102,39 @@ static NSInteger const kSplashTime = 5000; //
 {
 	[super viewDidAppear:animated];
   
-	// Do something awesome
-	[self performSelector:@selector(hideSplash)
-             withObject:nil
-             afterDelay:(kSplashTime / 1000.0)];
+  // Initialize a handler for dismissing the splash screen. It can only be
+  // dismissed after both the time limit has passed and after and upgrades
+  // and installations are complete. DB upgrades/installations are done async,
+  // so we need to wait for it to signal completion. This is best done on a
+  // seperate thread.
+  if (!_mIsThreadRunning) {
+    _mIsThreadRunning = YES;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long) NULL), ^(void) {
+      
+      // Set the running total of the time elapsed.
+      NSInteger waited = 0;
+      
+      // For backwards compatibility, we are using the navigation controller
+      // instead of the modal presenter.
+      while (waited < kSplashTime || _mContext.mDbNodeHelper.mIsUpgradeTaskInProgress){
+        // Loop this thread until the upgrade task is completed and after five
+        // seconds have passed.
+        [NSThread sleepForTimeInterval:1];
+        // Add to the running total of the time elapsed.
+        waited += 1000;
+      }
+      [self performSelectorOnMainThread:@selector(hideSplash) withObject:nil waitUntilDone:YES];
+    });
+  }
 }
 
 - (void)hideSplash {
   /*
   self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
   [self dismissModalViewControllerAnimated:NO];*/
-  
-  // For backwards compatibility, we are using the navigation controller instead
-  // of the modal presenter.
-  [self.navigationController popViewControllerAnimated:NO];
-  
   [_mContext loadMusic];
+  [self.navigationController popViewControllerAnimated:NO];
+
 }
 
 // Implements viewDidUnload.

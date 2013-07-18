@@ -19,32 +19,37 @@
 // <http://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@class ViewController;
+@class NodeDatabase;
 
-// Displays a Splash Screen on application launch.
-@interface SplashScreenViewController : UIViewController {
+// Class encapsulating the dbupgrade task.
+@interface DBUpgradeTask : NSObject {
   
- @private
+@private
   
-  // Cached calculated values so we don't have to regenerate them if they are
-  // needed again.
-  CGFloat _screenWidth;
-  CGFloat _screenHeight;
+  // Access the master view controller.
+  __unsafe_unretained NodeDatabase *_mContext;
+  UIActivityIndicatorView *_vcIndicator;
+  UIAlertView *_alert;
+  NSString *_mScriptID;
   
-  // Define views.
-  UIImageView *_ivSplash;
-  
-  // Reference to the master view.
-  __unsafe_unretained ViewController *_mContext;
-  // check to see if the splash dismiss thread is currently running.
-  BOOL _mIsThreadRunning;
 }
 
-@property(nonatomic, unsafe_unretained) ViewController *mContext;
+// Constructor that sets the necessary data for upgrading.
+- (id)initWithContext:(NodeDatabase *)nodeDatabase
+             scriptID:(NSString *)scriptID;
 
-// Dismisses the splash screen from the window.
-- (void)hideSplash;
+// Starts the task.
+- (void)execute;
+
+// The pre-task process on the main thread.
+- (void)onPreExecute;
+
+// Runs the main task process.
+- (void)run;
+
+// The post-task process on the main thread.
+- (void)onPostExecute;
 
 @end

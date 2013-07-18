@@ -64,6 +64,7 @@ static NSInteger const SCHEMA_VERSION = 2;
 @synthesize mLeftOperand = _mLeftOperand;
 @synthesize mRightOperand = _mRightOperand;
 @synthesize mOperator = _mOperator;
+@synthesize mIsUpgradeTaskInProgress = _mIsUpgradeTaskInProgress;
 
 // Implements init.
 - (id)init {
@@ -71,7 +72,7 @@ static NSInteger const SCHEMA_VERSION = 2;
   
   if (self) {
     // Init code here.
-    
+    _mIsUpgradeTaskInProgress = NO;
   }
   return self;
 }
@@ -84,7 +85,8 @@ static NSInteger const SCHEMA_VERSION = 2;
   // Check to see if the database exists. (Typically, on first run, it
   // should not exist yet). We create/open the database regardless, however, we
   // use this check to determine what we do after the database is opened or
-  // created.
+  // created. Alternatively, if the database exists, but is corrupt (ex. empty)
+  // we can later use this information to try and rebuild.
   BOOL dbExist = [self DBExists];
   
   // Get a readable database for use, or create one if one does not yet exist.
@@ -94,7 +96,8 @@ static NSInteger const SCHEMA_VERSION = 2;
   else {
     // If a database did not previously exist, run all available changescripts.
     if (!dbExist) {
-      [self runUpdates:@"0000"];
+      DBUpgradeTask *upgradeTask = [[DBUpgradeTask alloc] initWithContext:self scriptID:@"0000"];
+      [upgradeTask execute];
     }
     // Make sure to NOT run onUpgrade on a fresh install. Only run it when the
     // database already previously existed.
@@ -223,6 +226,10 @@ static NSInteger const SCHEMA_VERSION = 2;
     NSString *pragmaValue = [NSString stringWithFormat:@"%d", SCHEMA_VERSION];
     [self setPragma:@"user_version" value:pragmaValue];
   }
+  
+  // Close the database regardless of whether or not the updates were
+  // successful.
+  sqlite3_close(_mOurDatabase);
 }
 
 - (void)applyScript:(NSString *)script {
@@ -808,7 +815,9 @@ static NSInteger const SCHEMA_VERSION = 2;
 
 - (void)close {
   // Close the database connection.
-  sqlite3_close(_mOurDatabase);
+  if (!_mIsUpgradeTaskInProgress) {
+    sqlite3_close(_mOurDatabase);
+  }
 }
 
 - (void)setConditions:(NSString *)leftOperand
@@ -841,7 +850,8 @@ static NSInteger const SCHEMA_VERSION = 2;
     // most recent script == sc.01.00.0002
     // targetting users who have previously installed the application with the
     // pre-generated database.
-    [self runUpdates:@"0002"];
+    DBUpgradeTask *upgradeTask = [[DBUpgradeTask alloc] initWithContext:self scriptID:@"0002"];
+    [upgradeTask execute];
   }
   else {
     // Define an array of columns to SELECT.
@@ -905,7 +915,8 @@ static NSInteger const SCHEMA_VERSION = 2;
       
       // Garbage collect the memory used for running the statement.
       sqlite3_finalize(statement);
-      [self runUpdates:recentScriptID];
+      DBUpgradeTask *upgradeTask = [[DBUpgradeTask alloc] initWithContext:self scriptID:recentScriptID];
+      [upgradeTask execute];
     }
   }
 }
