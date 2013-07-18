@@ -141,6 +141,9 @@
     // Inverse the coordinates.
     CGContextScaleCTM(_mContext.colorGFX.pathCanvas, 1.0, -1.0);
     
+    // Ensure that the blend mode is normal so that color gets added.
+    CGBlendMode lastBlendMode = _mContext.colorGFX.mCurrentPathCanvasBlendMode;
+    [_mContext.colorGFX setBlendModeForContext:_mContext.colorGFX.pathCanvas blendMode:kCGBlendModeNormal];
     // Draw the newly filled image onto the path canvas.
     CGContextDrawImage(_mContext.colorGFX.pathCanvas,
                        _mContext.colorGFX.bounds,
@@ -148,6 +151,8 @@
     // [finalImage drawInRect: _mContext.colorGFX.bounds];
     CGImageRelease(newImageRef);
     
+    // Restore the last blend mode in case it was changed.
+    [_mContext.colorGFX setBlendModeForContext:_mContext.colorGFX.pathCanvas blendMode:lastBlendMode];
     
     // Restore the coordinate system to its default settings
     CGContextTranslateCTM(_mContext.colorGFX.pathCanvas,

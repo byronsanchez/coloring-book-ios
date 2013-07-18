@@ -112,6 +112,12 @@
   CGFloat _mX;
   CGFloat _mY;
   CGFloat _leftoverDistance;
+  
+  // Blend mode, in case the user is in the middle of a floodfill and switches
+  // to erase mode. This can be used in this kind of situation to manage the
+  // current blend mode and change if it necessary for a certain op, then
+  // restore the last blend mode.
+  CGBlendMode _mcurrentPathCanvasBlendMode;
 }
 
 @property(nonatomic, assign) BOOL isThreadRunning;
@@ -131,6 +137,7 @@
 @property(nonatomic, assign) CGContextRef pathCanvas;
 @property(nonatomic, assign) CGContextRef movePathCanvas;
 @property(nonatomic, assign) BOOL mHard;
+@property(nonatomic, assign) CGBlendMode mCurrentPathCanvasBlendMode;
 
 // Main initializer for this UIView.
 - (id)initWithContext:(ColorViewController *)colorViewController

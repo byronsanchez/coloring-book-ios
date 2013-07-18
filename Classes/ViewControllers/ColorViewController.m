@@ -769,8 +769,9 @@ static BOOL sIsLarge;
         _colorGFX.isFillModeEnabled = _mTbFillMode.selected;
         
         // Disable erase mode
+        _colorGFX.mCurrentPathCanvasBlendMode = kCGBlendModeNormal;
         [_colorGFX setBlendModeForContext:_colorGFX.pathCanvas
-                                blendMode:kCGBlendModeNormal];
+                                blendMode:_colorGFX.mCurrentPathCanvasBlendMode];
         
         _colorGFX.mHard = NO;
         
@@ -833,8 +834,9 @@ static BOOL sIsLarge;
         _currentTbStatus = @"_disabled";
         
         // Set the current brush mode to erase.
+        _colorGFX.mCurrentPathCanvasBlendMode = kCGBlendModeDestinationOut;
         [_colorGFX setBlendModeForContext:_colorGFX.pathCanvas
-                                blendMode:kCGBlendModeDestinationOut];
+                                blendMode:_colorGFX.mCurrentPathCanvasBlendMode];
         _colorGFX.mHard = YES;
         // Take the blur mode off for the eraser.
         // colorGFX.paint.setMaskFilter(null);
@@ -849,8 +851,9 @@ static BOOL sIsLarge;
         _currentTbStatus = @"";
         
         //colorGFX.paint.setXfermode(null);
+        _colorGFX.mCurrentPathCanvasBlendMode = kCGBlendModeNormal;
         [_colorGFX setBlendModeForContext:_colorGFX.pathCanvas
-                                blendMode:kCGBlendModeNormal];
+                                blendMode:_colorGFX.mCurrentPathCanvasBlendMode];
         _colorGFX.mHard = NO;
         
         // Set the blur mode on again for path drawing.

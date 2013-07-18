@@ -69,6 +69,7 @@ static NSInteger const TOUCH_TOLERANCE = 4;
 @synthesize movePathCanvas = _movePathCanvas;
 @synthesize pathCanvas = _pathCanvas;
 @synthesize mHard = _mHard;
+@synthesize mCurrentPathCanvasBlendMode = _mCurrentPathCanvasBlendMode;
 
 // Implements init.
 - (id)init {
