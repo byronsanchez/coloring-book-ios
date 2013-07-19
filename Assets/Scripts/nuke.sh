@@ -11,11 +11,8 @@ PROJECT_DIR="."
 NUKE[0]="$PROJECT_DIR/Resources/Images/icons/"
 NUKE[1]="$PROJECT_DIR/Resources/Images/launch-images/"
 NUKE[2]="$PROJECT_DIR/Resources/Images/promotional/"
-NUKE[3]="$PROJECT_DIR/Resources/Images/iphone/logo~iphone.png"
-NUKE[4]="$PROJECT_DIR/Resources/Images/iphone-retina/logo@2x~iphone.png"
-NUKE[5]="$PROJECT_DIR/Resources/Images/ipad/logo~ipad.png"
-NUKE[6]="$PROJECT_DIR/Resources/Images/ipad-retina/logo@2x~ipad.png"
-NUKE[7]="$PROJECT_DIR/Resources/Images/*/coloring_book_credits*.png"
+NUKE[3]="$PROJECT_DIR/Resources/Images/ip*/logo*.png"
+NUKE[4]="$PROJECT_DIR/Resources/Images/*/coloring_book_credits*.png"
 
 ###########
 # FUNCTIONS
